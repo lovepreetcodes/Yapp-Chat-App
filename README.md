@@ -61,7 +61,7 @@ Edit
 ## 📷 Screenshots
 
 ### 🔐 Login Page
-![Login](./Screenshots/LoginUi.png)
+![Login](./screenshots/LoginUi.png)
 
 ### 🗨️ Realtime Chat UI
 ![Chat](./screenshots/ChatUi.png)
