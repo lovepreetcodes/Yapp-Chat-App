@@ -6,6 +6,8 @@ import axios from 'axios';
 import { Smile } from 'lucide-react';
 import Picker from 'emoji-picker-react';
 import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation'; // ✅ App Router version
+
 // Zustand stores
 import { userAuthStore } from '../zustand/useAuthStore';
 import { useChatReceiverStore } from '../zustand/useChatReceiver';
@@ -23,19 +25,23 @@ const Chat = () => {
   const { chatMsgs, updateChatMsgs } = useChatMsgsStore();
   const messagesEndRef = useRef(null);
 
-
+  const [status, setStatus] = useState(null)
   const [msg, setMsg] = useState('');
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [socket, setSocket] = useState(null);
-
+  const router = useRouter()
 const handleLogout = async () => {
   try {
-    await fetch("http://localhost:5000/logout", {
+   const response =  await fetch("http://localhost:5000/auth/logout", {
       method: "POST",
       credentials: "include", // Send the cookie
     });
-
-    window.location.href = "/login"; // or use navigate("/login")
+     const data = await response.json();
+    if(data.message ==="Logged out successfully"){
+       router.replace('/login')
+       toast.success("Successfully logged out")
+    }
+   // or use navigate("/login")
   } catch (err) {
     console.error("Logout failed:", err);
   }
@@ -58,6 +64,7 @@ const handleLogout = async () => {
     });
     setSocket(newSocket);
 
+  
     // Listener for receiving a message from server
     newSocket.on('chat msg', (msgrecv) => {
       // ✅ Append new message without overwriting old ones
@@ -98,8 +105,8 @@ const handleLogout = async () => {
       updateChatMsgs((prevMsgs) => [...prevMsgs, msgToBeSent]);
       setMsg('');
     }
-  };
-
+  ;
+};
   return (
 <div className="flex h-screen items-center  justify-center bg-[#e76f51] font-sans shadow-[0_4px_50px_rgba(0,0,0,0.3)]">
   <div className="flex w-[90%] max-w-6xl h-[90%] border border-[#333] shadow-[0_4px_50px_rgba(0,0,0,0.3)] rounded-2xl overflow-hidden">

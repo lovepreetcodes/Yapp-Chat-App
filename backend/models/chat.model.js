@@ -27,7 +27,8 @@ const conversationSchema = mongoose.Schema({
        type: String,
        required: true
    }], 
-   msgs:[msgSchema]
+   msgs:[msgSchema],
+   
 });
 
 const Conversation = mongoose.model('conversation',conversationSchema)

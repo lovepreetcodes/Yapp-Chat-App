@@ -16,9 +16,9 @@ const userschema = mongoose.Schema({
        type: String,
        default: '../../frontend/public/user.png',
        required: false
-   },
+   }
 
-
+   
 });
 
 const userModel = mongoose.model('user',userschema)

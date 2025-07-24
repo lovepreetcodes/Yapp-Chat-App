@@ -56,13 +56,19 @@ io.on('connection', (socket) => {
     addMsgToConversation([msg.sender, msg.receiver], {
       text: msg.text,
       sender: msg.sender,
-      receiver: msg.receiver
+      receiver: msg.receiver,
+      
     });
   });
-
+ 
   // ✅ Cleanup on disconnect
   socket.on('disconnect', () => {
     console.log(`${username} disconnected`);
+    socket.broadcast.emit("presence:update", {
+      username,
+      isOnline: false,
+      lastSeen: new Date().toISOString()
+    });
     delete userSocketMap[username];
   });
 });

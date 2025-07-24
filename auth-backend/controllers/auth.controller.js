@@ -2,9 +2,9 @@ import userModel from "../models/user.model.js";
 import bcrypt from "bcrypt";
 import generateJwtToken from '../utils/gen-token.js';
 
-const signup = async (req, res) => {
+export const signup = async (req, res) => {
   try {
-    const { username, password,  avatar } = req.body;
+    const { username, password,  avatar,lastSeen } = req.body;
 
     // Check if user already exists
     const foundUser = await userModel.findOne({ username });
@@ -14,7 +14,7 @@ const signup = async (req, res) => {
 
     // Hash password and save new user
     const hashedpass = await bcrypt.hash(password, 10);
-    const user = new userModel({ username, password: hashedpass,  avatar });
+    const user = new userModel({ username, password: hashedpass,  avatar,lastSeen });
     await user.save();
 
     generateJwtToken(user._id, res); // ✅ sets cookie only
@@ -49,11 +49,11 @@ export const Login = async (req, res) => {
     return res.status(500).json({ message: "Internal server error" }); // ✅ handle unexpected errors
   }
 };
-export const Logout = ()=>{
+export const Logout = (req,res)=>{
  res.clearCookie("jwt", {
     httpOnly: true,
     sameSite: "strict",
     secure: false
   });  res.status(200).json({ message: "Logged out successfully" });
 }
-export default signup
+ 
