@@ -60,7 +60,24 @@ io.on('connection', (socket) => {
       
     });
   });
- 
+ // Handle typing event
+  // ✅ Handle typing event
+socket.on("typing", ({ sender, receiver }) => {
+  const receiverSocket = userSocketMap[receiver];
+  if (receiverSocket) {
+    receiverSocket.emit("user_typing", { sender });
+  }
+});
+
+// ✅ Handle stop typing event
+socket.on("stop_typing", ({ sender, receiver }) => {
+
+  const receiverSocket = userSocketMap[receiver];
+  if (receiverSocket) {
+    receiverSocket.emit("user_stopped_typing", { sender });
+  }
+});
+
   // ✅ Cleanup on disconnect
   socket.on('disconnect', () => {
     console.log(`${username} disconnected`);
