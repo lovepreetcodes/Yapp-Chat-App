@@ -18,7 +18,7 @@ const Register = ()=>{
 const submit = async(event)=>{
   event.preventDefault();
 try {
-    const res = await axios.post('http://localhost:5000/auth/login', {
+    const res = await axios.post(`${process.env.NEXT_PUBLIC_AUTH_API}/auth/login`, {
       username: username.trim(),
       password: password.trim(),
     },  { withCredentials: true  }

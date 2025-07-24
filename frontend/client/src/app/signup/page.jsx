@@ -23,7 +23,7 @@ const { authName, updateAuthName } = userAuthStore()
 
       console.log("control has reached")
        try {
-           const res = await axios.post('http://localhost:5000/auth/signup', {
+           const res = await axios.post(`${process.env.NEXT_PUBLIC_AUTH_API}/auth/signup`, {
                username: username,
                password: password,
                

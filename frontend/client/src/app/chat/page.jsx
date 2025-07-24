@@ -36,7 +36,7 @@ const chatReceiveRef = useRef(chatReceive);
 
   const handleLogout = async () => {
     try {
-      const response = await fetch("http://localhost:5000/auth/logout", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_AUTH_API}/auth/logout`, {
         method: "POST",
         credentials: "include",
       });
@@ -51,14 +51,14 @@ const chatReceiveRef = useRef(chatReceive);
   };
 
   const getUserData = async () => {
-    const res = await axios.get('http://localhost:5000/users', {
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_AUTH_API}/users`, {
       withCredentials: true,
     });
     updateUsers(res.data);
   };
 
   useEffect(() => {
-  const newSocket = io('http://localhost:8080', {
+  const newSocket = io(process.env.NEXT_PUBLIC_CHAT_API, {
     query: { username: authName },
   });
   setSocket(newSocket);
