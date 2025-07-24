@@ -13,10 +13,13 @@ const userSocketMap = {}; // Keeps track of connected users
 const port = 8080;
 
 // ✅ Enable CORS for Express routes
+import cors from 'cors';
+
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:3001'],
+  origin: ['http://localhost:3000', 'https://whispr-chat-app-frontend.onrender.com'],
   credentials: true,
 }));
+
 
 // Create HTTP server
 const server = http.createServer(app);

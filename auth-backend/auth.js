@@ -11,9 +11,10 @@ const PORT = process.env.PORT
 app.use(express.json())
 app.use(CookieParser())
 app.use(cors({
- credentials: true,
- origin: ["http://localhost:3000","http://localhost:3001","http://localhost:3002","http://localhost:3003"]
+  origin: ['http://localhost:3000', 'https://whispr-chat-app-frontend.onrender.com'],
+  credentials: true,
 }));
+
 
 app.get('/',(req,res)=>{
     res.end("Main auth page")
