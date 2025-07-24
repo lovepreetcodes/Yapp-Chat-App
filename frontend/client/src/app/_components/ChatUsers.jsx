@@ -6,6 +6,7 @@ import React, { useState,useEffect } from "react";
 import axios from "axios";
 
 function ChatUsers() {
+  const [search,setSearchTerm] = useState('')
   const { updateChatReceive ,chatReceive} = useChatReceiverStore();
   const { users } = useUsersStore();
   const {authName} = userAuthStore()
@@ -15,6 +16,12 @@ function ChatUsers() {
   function setChatReceiver(user) {
     updateChatReceive(user.username);
     setSelectedUser(user.username); // ✅ using username instead of user.id
+  }
+  function findUser(e){
+    e.preventDefault()
+
+
+
   }
  useEffect(() => {
        const getMsgs = async () => {
@@ -58,9 +65,34 @@ function ChatUsers() {
     {/* Green Dot on Far Right */}
     <span className="h-2.5 w-2.5 bg-green-500 rounded-full animate-pulse"></span>
   </div>
-<h1 className="m-2">Chats</h1>
+ <div className="relative w-full max-w-xs mb-4">
+  <input
+    type="text"
+    placeholder="Search users..."
+    value={search}
+    onChange={(e) => setSearchTerm(e.target.value)}
+    className="w-full pl-10 pr-4 py-2 rounded-xl bg-[#1f1f1f] text-white placeholder-gray-400 outline-none focus:ring-2 focus:ring-[#444] transition-all duration-200"
+  />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="h-5 w-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth={2}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z"
+    />
+  </svg>
+</div>
+
+
   {users
-    .filter((user) => user.username !== authName)
+    .filter((user) => user.username !== authName &&
+  user.username.toLowerCase().includes(search.toLowerCase()))
     .map((user, index) => (
       <div
         key={index}

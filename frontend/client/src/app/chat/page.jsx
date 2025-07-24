@@ -120,7 +120,7 @@ const handleLogout = async () => {
 
       {/* Chat Header */}
       
-      <div className="flex items-center justify-between shadow-[2px_0_15px_rgba(0,0,0,0.4)] p-4 border-b border-[#212529] bg-[#2C2A30] shadow-2xl">
+      <div className="flex  items-center justify-between shadow-[2px_0_15px_rgba(0,0,0,0.4)] p-4 border-b border-[#212529] bg-[#2C2A30] shadow-2xl">
         <div className="flex items-center justify-between gap-3  ">
           <img
             src="/user.png"
@@ -139,7 +139,7 @@ const handleLogout = async () => {
  <img onClick={handleLogout}
             src="/logout.png"
             alt="avatar"
-            className="w-10 h-10 cursor-pointer
+            className="w-8   h-8 mr-5 cursor-pointer 
 "
           />
       
