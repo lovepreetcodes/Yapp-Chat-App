@@ -52,21 +52,19 @@ const login = ()=>{
   router.replace("/login")
 }
  return (
- <div className="min-h-screen flex items-center justify-center bg-black relative px-4">
+ <div className="min-h-screen flex items-center justify-center bg-black relative px-4 sm:px-6">
   {/* Background gradient blobs */}
- 
+  <div className="absolute w-60 h-60 sm:w-80 sm:h-80 bg-[#bb3e03] opacity-20 blur-3xl rounded-full top-10 left-10"></div>
+  <div className="absolute w-72 h-72 sm:w-96 sm:h-96 bg-[#bb3e03] opacity-10 blur-2xl rounded-full bottom-0 right-0"></div>
 
-  <div className="absolute w-80 h-80 bg-[#bb3e03] opacity-20 blur-3xl rounded-full top-10 left-10"></div>
-  <div className="absolute w-96 h-96 bg-[#bb3e03] opacity-10 blur-2xl rounded-full bottom-0 right-0"></div>
- 
   {/* Signup Box */}
-  <div className="bg-zinc-900/90 backdrop-blur-lg text-white w-full max-w-md p-10 rounded-2xl shadow-2xl border border-zinc-800 z-10">
-   
+  <div className="bg-zinc-900/90 backdrop-blur-lg text-white w-full max-w-sm sm:max-w-md p-6 sm:p-10 rounded-2xl shadow-2xl border border-zinc-800 z-10">
     <form className="space-y-6">
-      {/* Avatar Upload (Static for now) */}
+      {/* Header */}
       <div className="flex flex-col items-center gap-2">
-        
-        <h2 className="text-3xl font-bold mb-8 text-center tracking-wide">Create Account</h2>
+        <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center tracking-wide">
+          Create Account
+        </h2>
       </div>
 
       {/* Username / Phone */}
@@ -77,7 +75,7 @@ const login = ()=>{
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           placeholder="Enter your username or number"
-          className="w-full bg-zinc-800/60 text-white px-4 py-3 rounded-xl border border-zinc-700 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-[#bb3e03] transition-all duration-150"
+          className="w-full bg-zinc-800/60 text-white px-4 py-3 rounded-xl border border-zinc-700 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-[#bb3e03] transition-all duration-150 text-sm sm:text-base"
         />
       </div>
 
@@ -89,16 +87,15 @@ const login = ()=>{
           onChange={(e) => setPassword(e.target.value)}
           type="password"
           placeholder="Enter your password"
-          className="w-full bg-zinc-800/60 text-white px-4 py-3 rounded-xl border border-zinc-700 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-[#bb3e03] transition-all duration-150"
+          className="w-full bg-zinc-800/60 text-white px-4 py-3 rounded-xl border border-zinc-700 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-[#bb3e03] transition-all duration-150 text-sm sm:text-base"
         />
       </div>
 
-      
       {/* Sign Up Button */}
       <button
         onClick={signUpFunc}
         type="submit"
-        className="w-full bg-[#bb3e03] text-white py-3 rounded-xl font-semibold hover:bg-[#e76f51] transition duration-200 shadow-md hover:shadow-lg"
+        className="w-full bg-[#bb3e03] text-white py-3 rounded-xl font-semibold hover:bg-[#e76f51] transition duration-200 shadow-md hover:shadow-lg text-sm sm:text-base"
       >
         Sign Up
       </button>
