@@ -133,7 +133,8 @@ const handleTyping = (e) => {
   };
 
   return (
-   <div className="flex min-h-screen items-center justify-center bg-[#e76f51] font-sans shadow-[0_4px_50px_rgba(0,0,0,0.3)] px-2 sm:px-0">
+   <div className="w-full sm:w-1/5 bg-[#2D2C35] p-3 border-[#2D2C35] shadow-[6px_0_15px_rgba(0,0,0,0.4)] z-10 sm:border-r">
+
   <div className="flex flex-col sm:flex-row w-full sm:w-[90%] max-w-6xl h-[95vh] sm:h-[90%] border border-[#333] shadow-[0_4px_50px_rgba(0,0,0,0.3)] rounded-2xl overflow-hidden">
     <ChatUsers />
     
