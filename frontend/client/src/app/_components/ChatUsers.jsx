@@ -47,7 +47,8 @@ function ChatUsers() {
        }
    }, [chatReceive])
   return (
- <div className="w-full sm:w-1/3 md:w-1/4 bg-[#2D2C35] p-3 border-[#2D2C35] shadow-[6px_0_15px_rgba(0,0,0,0.4)] z-10 max-h-[40vh] sm:max-h-full overflow-y-auto custom-scrollbar">
+ <div className="w-full sm:w-1/3 md:w-1/4 bg-[#2D2C35] p-3 border-[#2D2C35] shadow-[6px_0_15px_rgba(0,0,0,0.4)] z-10 sm:border-r max-h-[40vh] sm:max-h-full overflow-y-auto">
+
   {/* Current User Header */}
   <div className="flex items-center justify-between px-4 py-3 mb-3 shadow-[6px_0_15px_rgba(0,0,0,0.6)] border-[#202027]">
     <div className="flex items-center gap-3">
@@ -56,16 +57,17 @@ function ChatUsers() {
         alt="User avatar"
         className="w-10 h-10 rounded-full"
       />
-      <div className="flex flex-col">
-        <p className="text-white font-medium text-sm sm:text-base truncate">{authName}</p>
+      <div>
+        <p className="text-white font-medium text-sm sm:text-base">{authName}</p>
         <p className="text-xs text-zinc-400">Online</p>
       </div>
     </div>
-    <span className="h-2.5 w-2.5 bg-green-500 rounded-full animate-pulse" />
+
+    <span className="h-2.5 w-2.5 bg-green-500 rounded-full animate-pulse"></span>
   </div>
 
   {/* Search Box */}
-  <div className="relative w-full mb-4">
+  <div className="relative w-full max-w-full sm:max-w-xs mb-4">
     <input
       type="text"
       placeholder="Search users..."
@@ -81,40 +83,44 @@ function ChatUsers() {
       stroke="currentColor"
       strokeWidth={2}
     >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z"
+      />
     </svg>
   </div>
 
   {/* Users List */}
-  <div className="space-y-2">
-    {users
-      .filter(
-        (user) =>
-          user.username !== authName &&
-          user.username.toLowerCase().includes(search.toLowerCase())
-      )
-      .map((user, index) => (
-        <div
-          key={index}
-          className={`flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer transition duration-200 hover:bg-[#202027] ${
-            selectedUser === user.username ? "bg-[#202027]" : ""
-          }`}
-          onClick={() => setChatReceiver(user)}
-        >
-          <img
-            src="/user.png"
-            alt="avatar"
-            className="w-10 h-10 rounded-full"
-          />
-          <div className="text-white overflow-hidden">
-            <p className="font-medium truncate">{user.username}</p>
-            <p className="text-xs text-gray-400 truncate">{user.name}</p>
-          </div>
+  {users
+    .filter(
+      (user) =>
+        user.username !== authName &&
+        user.username.toLowerCase().includes(search.toLowerCase())
+    )
+    .map((user, index) => (
+      <div
+        key={index}
+        className="flex items-center gap-3 mb-3 rounded cursor-pointer transition px-3 py-2 sm:px-4 sm:py-3"
+        style={{
+          backgroundColor:
+            selectedUser === user.username ? "#202027" : "transparent",
+          borderRadius: "8px",
+        }}
+        onClick={() => setChatReceiver(user)}
+      >
+        <img
+          src="/user.png"
+          alt="avatar"
+          className="w-10 h-10 rounded-full"
+        />
+        <div className="text-white overflow-hidden">
+          <p className="font-medium truncate">{user.username}</p>
+          <p className="text-xs text-gray-400 truncate">{user.name}</p>
         </div>
-      ))}
-  </div>
+      </div>
+    ))}
 </div>
-
 
   )}
 export default ChatUsers;
