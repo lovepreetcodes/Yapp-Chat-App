@@ -47,80 +47,53 @@ function ChatUsers() {
        }
    }, [chatReceive])
   return (
- <div className="w-full sm:w-1/3 md:w-1/4 bg-[#2D2C35] p-3 border-[#2D2C35] shadow-[6px_0_15px_rgba(0,0,0,0.4)] z-10 sm:border-r max-h-[40vh] sm:max-h-full overflow-y-auto">
-
-  {/* Current User Header */}
-  <div className="flex items-center justify-between px-4 py-3 mb-3 shadow-[6px_0_15px_rgba(0,0,0,0.6)] border-[#202027]">
+ <div className="w-[20%] bg-[#2D2C35] p-3 border-[#2D2C35] shadow-[6px_0_15px_rgba(0,0,0,0.4)] border-r">
+  <div className="flex items-center shadow-[6px_0_15px_rgba(0,0,0,0.6)] mb-3 justify-between px-4 py-3 border-[#202027]">
     <div className="flex items-center gap-3">
-      <img
-        src="/user.png"
-        alt="User avatar"
-        className="w-10 h-10 rounded-full"
-      />
+      <img src="/user.png" alt="User avatar" className="w-10 h-10 rounded-full" />
       <div>
-        <p className="text-white font-medium text-sm sm:text-base">{authName}</p>
+        <p className="text-white font-medium">{authName}</p>
         <p className="text-xs text-zinc-400">Online</p>
       </div>
     </div>
-
     <span className="h-2.5 w-2.5 bg-green-500 rounded-full animate-pulse"></span>
   </div>
 
-  {/* Search Box */}
-  <div className="relative w-full max-w-full sm:max-w-xs mb-4">
+  <div className="relative w-full mb-4">
     <input
       type="text"
       placeholder="Search users..."
       value={search}
       onChange={(e) => setSearchTerm(e.target.value)}
-      className="w-full pl-10 pr-4 py-2 rounded-xl bg-[#1f1f1f] text-white placeholder-gray-400 outline-none focus:ring-2 focus:ring-[#444] transition-all duration-200 text-sm sm:text-base"
+      className="w-full pl-10 pr-4 py-2 rounded-xl bg-[#1f1f1f] text-white placeholder-gray-400 outline-none focus:ring-2 focus:ring-[#444] transition-all duration-200"
     />
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="h-5 w-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      strokeWidth={2}
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z"
-      />
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
     </svg>
   </div>
 
-  {/* Users List */}
   {users
-    .filter(
-      (user) =>
-        user.username !== authName &&
-        user.username.toLowerCase().includes(search.toLowerCase())
-    )
+    .filter(user => user.username !== authName && user.username.toLowerCase().includes(search.toLowerCase()))
     .map((user, index) => (
       <div
         key={index}
-        className="flex items-center gap-3 mb-3 rounded cursor-pointer transition px-3 py-2 sm:px-4 sm:py-3"
+        className="flex items-center gap-3 mb-3 rounded cursor-pointer transition"
         style={{
-          backgroundColor:
-            selectedUser === user.username ? "#202027" : "transparent",
+          backgroundColor: selectedUser === user.username ? "#202027" : "transparent",
+          padding: "12px",
           borderRadius: "8px",
         }}
         onClick={() => setChatReceiver(user)}
       >
-        <img
-          src="/user.png"
-          alt="avatar"
-          className="w-10 h-10 rounded-full"
-        />
-        <div className="text-white overflow-hidden">
-          <p className="font-medium truncate">{user.username}</p>
-          <p className="text-xs text-gray-400 truncate">{user.name}</p>
+        <img src="/user.png" alt="avatar" className="w-10 h-10 rounded-full" />
+        <div className="text-white">
+          <p className="font-medium">{user.username}</p>
+          <p className="text-xs text-gray-400">{user.name}</p>
         </div>
       </div>
     ))}
 </div>
+
 
   )}
 export default ChatUsers;
