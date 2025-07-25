@@ -25,16 +25,16 @@ function ChatUsers() {
   }
  useEffect(() => {
        const getMsgs = async () => {
-           const res = await axios.get(`${process.env.NEXT_PUBLIC_CHAT_API}/msgs`,
-               {
-                   params: {
-                       'sender': authName,
-                       'receiver': chatReceive
-                   }
-               },
-               {
-                   withCredentials: true
-               });
+           const res = await axios.get(`${process.env.NEXT_PUBLIC_CHAT_API}/msgs`, {
+  params: {
+    sender: authName,
+    receiver: chatReceive,
+  },
+  withCredentials: true, // ✅ This now works
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem("token")}`, // ✅ If your backend expects JWT
+  },
+});
            if (res.data.length !== 0) {
                updateChatMsgs(res.data);
                updateLastMsg(res.data.name)

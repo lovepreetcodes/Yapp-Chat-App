@@ -23,7 +23,7 @@ try {
       password: password.trim(),
     },  { withCredentials: true  }
     );
-
+localStorage.setItem("token", res.data.token);
 if (res.data?.message === "Login Successful") {
    toast.success(`Welcome ${username}`);
   updateAuthName(username)
