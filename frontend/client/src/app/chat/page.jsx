@@ -36,6 +36,12 @@ const [showGifPicker, setShowGifPicker] = useState(false);
   const [typingTimeout, setTypingTimeout] = useState(null);
   const [isTyping, setIsTyping] = useState(false);
   const router = useRouter();
+useEffect(() => {
+  if (!authName) {
+    toast.error("Connection Lost");
+    router.replace('/login');
+  }
+}, [authName]);
 
   const handleLogout = async () => {
     try {
