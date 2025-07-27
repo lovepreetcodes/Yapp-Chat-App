@@ -1,92 +1,76 @@
 # 🗨️ Whisper — Realtime Chat App
 
-**Whisper** is a realtime 1-to-1 chat application built with a microservices architecture. It features seamless authentication, clean UI, and instant messaging using WebSockets. Designed for scalability and clarity, it separates concerns across dedicated services for authentication and messaging.
+**Whisper** is a realtime 1-to-1 chat application built with a microservices architecture.  
+It features seamless authentication, modern UI, media sharing, and instant messaging using WebSockets.  
+Designed for scalability, speed, and a clean experience.
+
+---
+
+🎯 **Live Demo** → [whispr-chat-app-frontend.onrender.com](https://whispr-chat-app-frontend.onrender.com)  
+🚀 Ready to chat instantly — No install required!
+
+---
+Screenshots:
+Login:
+UI
+Chat interface:
+
+## ✨ What's New
+
+- 🖼️ **Media Sharing Support** — Send images and GIFs directly in chat!
+- 🎨 **UI Improvements** — Smoother login and chat design for better UX
+- ☁️ **Deployed Online** — Users can now experience Whisper live
 
 ---
 
 ## 🚀 Features
 
-- 🔐 JWT-based Signup/Login (via Auth Service)
-- 💬 Realtime 1-to-1 Messaging using WebSockets
-- 🛎️ Live Message Notifications
-- 🧭 Microservices Architecture
-- 💅 Clean, Modern UI (Next.js + Tailwind)
-- 🐳 Dockerfile provided for containerization
+> Whisper is built to deliver fast, private 1-to-1 messaging in real-time.
+
+- 🔐 **JWT-based Signup/Login** (via Auth Service)
+- 💬 **Realtime Chat** using WebSockets
+- 🖼️ **Media Sharing** — Images, GIFs ✅ *(New)*
+- 🛎️ **Live Toast Notifications** for new messages
+- 🧭 **Microservices Architecture**
+- 💅 **Modern UI** with Tailwind CSS ✅ *(Improved)*
+- 🐳 **Dockerized Setup** with easy build scripts
+
+---
+
+## 📦 Tech Stack
+
+| Layer         | Tech                |
+|--------------|---------------------|
+| Frontend     | Next.js, Tailwind CSS |
+| Backend      | Node.js, Express     |
+| Realtime     | WebSockets           |
+| Auth         | JWT                  |
+| Database     | MongoDB              |
+| Containerize | Docker               |
 
 ---
 
 ## 🛠️ Getting Started (Local Setup)
 
-1. **Clone the repository**
-# Inside each service folder, create a .env file:
+# Clone the repository
+git clone https://github.com/lovepreetcodes/whisper-chat-app.git
+cd whisper-chat-app
+
+# Create .env files in each service:
 - auth-backend/.env
 - backend/.env
-- client/.env  (if required)
-  
-# Build individual images
-docker build -t Whisper-Chat-App./auth-backend
-docker build -t Whisper-Chat-msg ./backend
+- frontend/client/.env (if required)
+
+# Build Docker images
+docker build -t whisper-auth ./auth-backend
+docker build -t whisper-backend ./backend
 docker build -t whisper-client ./client
 
-# Or, if using docker-compose
+# Or use docker-compose
 docker-compose up --build
-# Or, if using docker-compose
-docker-compose up --build
-
-🏗️ Tech Stack
-Frontend: Next.js, Tailwind CSS
-
-Backend: Node.js, Express
-
-Realtime: WebSockets
-
-Database: MongoDB
-
-Authentication: JWT
-
-Containerization: Docker
-
-📁 Project Structure
-bash
-Copy
-Edit
-.
-├── auth-backend/          # Handles authentication and user logic
-├── backend/               # Handles chat and WebSocket logic
-├── frontend/client        # Next.js frontend
-├── Screenshots            # images
-└── README.md
----
-
-## 📷 Screenshots
-
-### 🔐 Login Page
-![Login](./screenshots/LoginUi.png)
-
-### 🗨️ Realtime Chat UI
-![Chat](./screenshots/ChatUi.png)
-
-
-
-📌 
-Planned future enhancements:
-
-👥 Group Chats
-
-🖼️ Media Attachments
-
-🌐 Online/Offline Indicators
-
-🔍 Chat Search
-
-🔄 Refresh Token Flow
-
-📱 PWA Support
-
-
 
 
 🤝 Contributing
-We welcome contributions and suggestions. If you find issues or want to help, feel free to open a pull request or issue.
+I welcome contributions and suggestions. If you find issues or want to help, feel free to open a pull request or issue.
 
 
