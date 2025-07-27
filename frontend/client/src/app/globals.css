@@ -42,6 +42,14 @@ body {
 @tailwind components;
 @tailwind utilities;
 
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-float {
+  animation: float 2.5s ease-in-out infinite;
+}
+
 @layer utilities {
   .dot {
     @apply w-2.5 h-2.5 bg-gray-400 rounded-full;

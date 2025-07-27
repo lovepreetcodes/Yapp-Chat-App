@@ -2,17 +2,19 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-"scripts": {
-  "dev": "next dev",
-  "build": "next build",
-  "start": "next start -p $PORT"
-}
-,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start -p $PORT"
+  },
   "dependencies": {
+    "@giphy/js-fetch-api": "^5.7.0",
+    "@giphy/react-components": "^10.1.0",
     "@heroicons/react": "^2.2.0",
     "axios": "^1.10.0",
     "client": "^0.0.1",
     "dayjs": "^1.11.13",
+    "dotenv": "^17.2.1",
     "emoji-picker-react": "^4.13.1",
     "lucide-react": "^0.525.0",
     "next": "^15.3.4",

@@ -8,6 +8,7 @@ import Picker from 'emoji-picker-react';
 import toast from 'react-hot-toast';
 import dayjs from 'dayjs';
 import { useRouter } from 'next/navigation';
+import GifPicker from '../_components/GifPicker'; // update path if needed
 
 // Zustand stores
 import { userAuthStore } from '../zustand/useAuthStore';
@@ -25,6 +26,8 @@ const Chat = () => {
   const { chatMsgs, updateChatMsgs } = useChatMsgsStore();
   const messagesEndRef = useRef(null);
 const chatReceiveRef = useRef(chatReceive);
+const [showGifPicker, setShowGifPicker] = useState(false);
+
 
   const [status, setStatus] = useState(null);
   const [msg, setMsg] = useState('');
@@ -134,9 +137,15 @@ const handleTyping = (e) => {
 
   return (
  <div className="flex h-screen items-center justify-center bg-[#e76f51] font-sans shadow-[0_4px_50px_rgba(0,0,0,0.3)]">
-      <div className="flex w-[90%] max-w-6xl h-[90%] border border-[#333] shadow-[0_4px_50px_rgba(0,0,0,0.3)] rounded-2xl overflow-hidden">
-        <ChatUsers />
-        <div className="w-full flex-1 flex flex-col bg-[#2A2B33ff]">
+  <div className="flex w-[90%] max-w-6xl h-[90%] border border-[#333] shadow-[0_4px_50px_rgba(0,0,0,0.3)] rounded-2xl overflow-hidden">
+    
+    <ChatUsers />
+
+    <div className="w-full flex-1 flex flex-col bg-[#2A2B33ff]">
+
+      {chatReceive ? (
+        <>
+          {/* ✅ Top Bar (avatar + username + logout) */}
           <div className="flex items-center justify-between shadow-[2px_0_15px_rgba(0,0,0,0.4)] p-4 border-b border-[#212529] bg-[#2C2A30] shadow-2xl">
             <div className="flex items-center justify-between gap-3">
               <img src="/user.png" alt="avatar" className="w-10 h-10 rounded-full" />
@@ -147,7 +156,7 @@ const handleTyping = (e) => {
             <img onClick={handleLogout} src="/logout.png" alt="logout" className="w-8 h-8 mr-5 cursor-pointer" />
           </div>
 
-          {/* Messages */}
+          {/* ✅ Messages */}
           <div className="flex-1 px-3 py-6 overflow-y-auto space-y-3 custom-scrollbar">
             {chatMsgs.map((msg, index) => (
               <div key={index} className={`flex ${msg.sender === authName ? 'justify-end' : 'justify-start'}`}>
@@ -170,35 +179,54 @@ const handleTyping = (e) => {
             ))}
 
             {/* ✅ Typing Indicator */}
-           {isTyping &&  (
-  <div className="flex justify-start ml-6 mb-2">
-    <div className="flex space-x-2">
-      <span className="dot" />
-      <span className="dot" />
-      <span className="dot" />
-    </div>
-  </div>
-)}
-
-
-
-
+            {isTyping && (
+              <div className="flex justify-start ml-6 mb-2">
+                <div className="flex space-x-2">
+                  <span className="dot" />
+                  <span className="dot" />
+                  <span className="dot" />
+                </div>
+              </div>
+            )}
 
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Typing Box */}
+          {/* ✅ Typing Box */}
           <div className="h-[70px] mb-6 ml-5 mr-5 flex items-center px-3 py-2 bg-[#1f1f1f] shadow-[0_8px_24px_rgba(0,0,0,0.2)] border border-[#2a2a2a] rounded-xl">
             <form onSubmit={sendMsg} className="flex w-full items-center gap-3">
-              <button type="button" className="p-2 rounded-full hover:bg-[#2d2d2d] transition">
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-                </svg>
-              </button>
+              <button
+  type="button"
+  onClick={() => setShowGifPicker((prev) => !prev)}
+  className="p-2 rounded-full hover:bg-[#2d2d2d] transition"
+>
+  <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+  </svg>
+</button>
+{showGifPicker && (
+  <div className="relative">
+    <GifPicker
+      onGifSelect={(gifUrl) => {
+        const gifMsg = {
+          text: gifUrl,
+          sender: authName,
+          receiver: chatReceive,
+          time: dayjs().format('h:mm A'),
+          isGif: true,
+        };
+        socket.emit('chat msg', gifMsg);
+        updateChatMsgs((prev) => [...prev, gifMsg]);
+        setShowGifPicker(false);
+      }}
+    />
+  </div>
+)}
+
 
               <input
                 type="text"
-                value={msg} 
+                value={msg}
                 onChange={handleTyping}
                 placeholder="Message..."
                 required
@@ -229,19 +257,36 @@ const handleTyping = (e) => {
                       />
                     </div>
                   )}
+
                 </div>
               </div>
 
-              <button type="submit" className="p-3 bg-[#A43224] hover:bg-[#e76f51] rounded-full shadow-lg transition">
+              <button type="submit" className="p-4 bg-[#A43224] hover:bg-[#e76f51] rounded-full shadow-lg transition">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" className="w-5 h-5">
                   <path d="M2 21l21-9L2 3v7l15 2-15 2v7z" />
                 </svg>
+                
               </button>
             </form>
           </div>
-        </div>
-      </div>
+        </>
+      ) : (
+ <div className="w-full flex-1 flex flex-col items-center justify-center bg-[#2A2B33ff] text-center px-6">
+  <img
+    src="https://img.icons8.com/?size=100&id=aCfAk9QBX2mZ&format=png&color=FFFFFF"
+    alt="Start chatting"
+    className="w-24 h-24 mb-6 animate-float"
+  />
+  <h2 className="text-white text-2xl font-semibold mb-2">No Conversation Selected</h2>
+  <p className="text-gray-400 text-sm">Click on a user from the left to start chatting 💬</p>
+</div>
+
+
+      )}
     </div>
+  </div>
+</div>
+
   );
 };
 export default Chat;
