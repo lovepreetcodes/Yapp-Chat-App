@@ -11,10 +11,17 @@ Designed for scalability, speed, and a clean experience.
 
 ---
 Screenshots:
-Login:
-UI
-Chat interface:
 
+### 🔐 Login Page
+![Login](./screenshots/Screenshot_1.png)
+
+### 💬  Chat UI
+![Chat](./screenshots/Screenshot_2.png)
+
+### 💬  Messaging Interface
+![Messaging](./screenshots/Screenshot_3.png)
+
+---
 ## ✨ What's New
 
 - 🖼️ **Media Sharing Support** — Send images and GIFs directly in chat!
