@@ -13,7 +13,10 @@ const msgSchema = mongoose.Schema({
        type: String,
        required: true
   },
-  
+    isGif: {
+    type:Boolean,
+    required:false
+    }
    // createdAt: {
    //     type: Date,
    //     default: Date.now

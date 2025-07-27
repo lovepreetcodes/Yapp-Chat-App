@@ -26,7 +26,7 @@ const server = http.createServer(app);
 // ✅ Enable CORS for socket.io
 const io = new Server(server, {
   cors: {
-    origin:['https://whispr-chat-app-frontend.onrender.com'],  // React app
+    origin:['https://whispr-chat-app-frontend.onrender.com','http://localhost:3000'],  // React app
     methods: ['GET', 'POST'],
     credentials: true,
   }

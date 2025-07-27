@@ -48,23 +48,24 @@ if (res.data?.message === "Login Successful") {
 
   return (
     
-<div className="min-h-screen flex flex-col items-center justify-center bg-black relative px-4 sm:px-6 py-6">
+<div className="min-h-screen flex items-center justify-center bg-black relative px-4 sm:px-6 py-6">
   {/* Background gradient blobs */}
   <div className="absolute w-60 h-60 sm:w-80 sm:h-80 bg-orange-700 opacity-20 blur-3xl rounded-full top-10 left-10"></div>
   <div className="absolute w-72 h-72 sm:w-96 sm:h-96 bg-orange-500 opacity-10 blur-2xl rounded-full bottom-0 right-0"></div>
 
-  {/* Logo */}
-  <div className="mt-2 mb-6 z-10">
-    <img
-      src="/sign.png"
-      alt="Whispr Logo"
-      className="w-36 h-36 sm:w-48 sm:h-48 object-contain rounded-md"
-    />
-  </div>
+  {/* Login Box (with logo inside) */}
+  <div className="bg-zinc-900/90 backdrop-blur-lg text-white w-full max-w-sm sm:max-w-md shadow-2xl p-6 sm:p-10 rounded-2xl border border-zinc-800 z-10 flex flex-col items-center">
+    
+    {/* Logo (smaller, centered at top) */}
+    <div className="mb-6">
+      <img
+        src="/sign.png"
+        alt="Whispr Logo"
+        className="w-24 h-24 sm:w-28 sm:h-28 object-contain rounded-md"
+      />
+    </div>
 
-  {/* Login Box */}
-  <div className="bg-zinc-900/90 backdrop-blur-lg text-white w-full max-w-sm sm:max-w-md shadow-2xl p-6 sm:p-12 rounded-2xl border border-zinc-800 z-10">
-    <form className="space-y-6">
+    <form className="space-y-6 w-full">
       {/* Username */}
       <div>
         <label className="block text-sm font-medium text-zinc-300 mb-2">Username / Phone</label>
@@ -110,6 +111,7 @@ if (res.data?.message === "Login Successful") {
     </p>
   </div>
 </div>
+
 
 
   )

@@ -62,6 +62,7 @@ const [showGifPicker, setShowGifPicker] = useState(false);
 
   useEffect(() => {
   const newSocket = io(process.env.NEXT_PUBLIC_CHAT_API, {
+    withCredentials:true,
     query: { username: authName },
   });
   setSocket(newSocket);
@@ -155,28 +156,43 @@ const handleTyping = (e) => {
             </div>
             <img onClick={handleLogout} src="/logout.png" alt="logout" className="w-8 h-8 mr-5 cursor-pointer" />
           </div>
+{/* ✅ Messages */}
+<div className="flex-1 px-3 py-6 overflow-y-auto space-y-3 custom-scrollbar">
+  {chatMsgs.map((msg, index) => (
+    <div key={index} className={`flex ${msg.sender === authName ? 'justify-end' : 'justify-start'}`}>
+      <div className="flex items-end gap-1">
+        
+        {/* ✅ Conditionally render GIF or Text */}
+        <div className={`max-w-sm px-2 py-2 text-sm shadow ${
+          msg.sender === authName
+            ? 'bg-[#A43224ff] text-white rounded-l-lg rounded-tr-lg'
+            : 'bg-[#202027] text-white rounded-r-lg rounded-tl-lg'
+        }`}>
+         {msg.isGif || msg.text.includes("giphy.com/media") ? (
+  <img
+    src={msg.text}
+    alt="GIF"
+    className="max-w-xs rounded-md"
+    onClick={(e) => e.stopPropagation()}
+  />
+) : (
+  <p>{msg.text}</p>
+)}
 
-          {/* ✅ Messages */}
-          <div className="flex-1 px-3 py-6 overflow-y-auto space-y-3 custom-scrollbar">
-            {chatMsgs.map((msg, index) => (
-              <div key={index} className={`flex ${msg.sender === authName ? 'justify-end' : 'justify-start'}`}>
-                <div className="flex items-end gap-1">
-                  <div className={`max-w-sm px-6 py-2 text-sm shadow ${
-                    msg.sender === authName
-                      ? 'bg-[#A43224ff] text-white rounded-l-lg rounded-tr-lg'
-                      : 'bg-[#202027] text-white-200 rounded-r-lg rounded-tl-lg'
-                  }`}>
-                    {msg.text}
-                  </div>
-                  {msg.sentByCurrUser && (
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.5 12.75l6 6 9-13.5" />
-                    </svg>
-                  )}
-                  <span className="text-xs text-gray-400 mt-1 block text-right">{msg.time}</span>
-                </div>
-              </div>
-            ))}
+        </div>
+
+        {/* ✅ Sent status icon */}
+        {msg.sentByCurrUser && (
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.5 12.75l6 6 9-13.5" />
+          </svg>
+        )}
+
+        {/* ✅ Timestamp */}
+        <span className="text-xs text-gray-400 mt-1 block text-right">{msg.time}</span>
+      </div>
+    </div>
+  ))}
 
             {/* ✅ Typing Indicator */}
             {isTyping && (
