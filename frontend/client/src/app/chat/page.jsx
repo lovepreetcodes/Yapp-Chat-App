@@ -150,7 +150,7 @@ const handleTyping = (e) => {
 
     <div className="w-full flex-1 flex flex-col bg-[#2A2B33ff]">
 
-      {chatReceive ? (
+      {chatReceive  && chatReceive!==authName ? (
         <>
           {/* ✅ Top Bar (avatar + username + logout) */}
           <div className="flex items-center justify-between shadow-[2px_0_15px_rgba(0,0,0,0.4)] p-4 border-b border-[#212529] bg-[#2C2A30] shadow-2xl">
