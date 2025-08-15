@@ -18,8 +18,6 @@ Screenshots:
 ### 💬  Chat UI
 ![Chat](./screenshots/Screenshot_2.png)
 
-### 💬  Messaging Interface
-![Messaging](./screenshots/Screenshot_3.png)
 
 ---
 ## ✨ What's New
