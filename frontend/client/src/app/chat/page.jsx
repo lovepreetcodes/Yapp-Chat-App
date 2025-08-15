@@ -147,14 +147,8 @@ const handleTyping = (e) => {
   <div className="flex w-[90%] max-w-6xl h-[90%] bg-white shadow-xl rounded-2xl overflow-hidden">
     <ChatUsers />
 
-<<<<<<< HEAD
     <div className="w-full flex-1 flex flex-col">
       {chatReceive && chatReceive !== authName ? (
-=======
-    <div className="w-full flex-1 flex flex-col bg-[#2A2B33ff]">
-
-      {chatReceive  && chatReceive!==authName ? (
->>>>>>> e3fe9c5e52d0a30fa77fcd262c47fc9146cc4992
         <>
           {/* ✅ Top Bar */}
           <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-[#F0F2F5] shadow-sm">
