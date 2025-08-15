@@ -1,6 +1,6 @@
-# 🗨️ Whisper — Realtime Chat App
+# 🗨️ Yapp — Realtime Chat App
 
-**Whisper** is a realtime 1-to-1 chat application built with a microservices architecture.  
+**Yapp** is a realtime 1-to-1 chat application built with a microservices architecture.  
 It features seamless authentication, modern UI, media sharing, and instant messaging using WebSockets.  
 Designed for scalability, speed, and a clean experience.
 
@@ -60,7 +60,7 @@ Screenshots:
 ## 🛠️ Getting Started (Local Setup)
 
 # Clone the repository
-git clone https://github.com/lovepreetcodes/whisper-chat-app.git
+git clone https://github.com/lovepreetcodes/Yapp-chat-app.git
 cd whisper-chat-app
 
 # Create .env files in each service:
