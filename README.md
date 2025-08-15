@@ -6,7 +6,7 @@ Designed for scalability, speed, and a clean experience.
 
 ---
 
-🎯 **Live Demo** → [whispr-chat-app-frontend.onrender.com](https://whispr-chat-app-frontend.onrender.com)  
+🎯 **Live Demo** → [yapp-chat-app-frontend.onrender.com](https://whispr-chat-app-frontend.onrender.com)  
 🚀 Ready to chat instantly — No install required!
 
 ---
@@ -59,7 +59,7 @@ Screenshots:
 
 # Clone the repository
 git clone https://github.com/lovepreetcodes/Yapp-chat-app.git
-cd whisper-chat-app
+cd yapp-chat-app
 
 # Create .env files in each service:
 - auth-backend/.env
@@ -67,9 +67,9 @@ cd whisper-chat-app
 - frontend/client/.env (if required)
 
 # Build Docker images
-docker build -t whisper-auth ./auth-backend
-docker build -t whisper-backend ./backend
-docker build -t whisper-client ./client
+docker build -t yapp-auth ./auth-backend
+docker build -t yapp-backend ./backend
+docker build -t yapp-client ./client
 
 # Or use docker-compose
 docker-compose up --build
