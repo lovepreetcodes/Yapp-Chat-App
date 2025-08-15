@@ -52,42 +52,48 @@ const login = ()=>{
   router.replace("/login")
 }
  return (
- <div className="min-h-screen flex items-center justify-center bg-black relative px-4 sm:px-6">
+ <div className="min-h-screen flex items-center justify-center bg-[#D9DBD5] relative px-4 sm:px-6 py-6">
   {/* Background gradient blobs */}
-  <div className="absolute w-60 h-60 sm:w-80 sm:h-80 bg-[#bb3e03] opacity-20 blur-3xl rounded-full top-10 left-10"></div>
-  <div className="absolute w-72 h-72 sm:w-96 sm:h-96 bg-[#bb3e03] opacity-10 blur-2xl rounded-full bottom-0 right-0"></div>
+  <div className="absolute w-60 h-60 sm:w-80 sm:h-80 bg-[#128C7E] opacity-20 blur-3xl rounded-full top-10 left-10"></div>
+  <div className="absolute w-72 h-72 sm:w-96 sm:h-96 bg-[#075E54] opacity-10 blur-2xl rounded-full bottom-0 right-0"></div>
 
   {/* Signup Box */}
-  <div className="bg-zinc-900/90 backdrop-blur-lg text-white w-full max-w-sm sm:max-w-md p-6 sm:p-10 rounded-2xl shadow-2xl border border-zinc-800 z-10">
+  <div className="bg-white/80 backdrop-blur-md text-black w-full max-w-sm sm:max-w-md p-6 sm:p-10 rounded-2xl shadow-2xl z-10">
     <form className="space-y-6">
-      {/* Header */}
-      <div className="flex flex-col items-center gap-2">
-        <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center tracking-wide">
-          Create Account
-        </h2>
+      {/* Header with App Name and Icon */}
+      <div className="flex flex-col items-center gap-2 mb-6">
+        <div className="flex items-center gap-3">
+          <img
+            src="/whatsapp-logo.png"
+            alt="Yapp logo"
+            className="w-10 h-10"
+          />
+          <h2 className="text-3xl font-bold tracking-wide">Yapp</h2>
+        </div>
+        <p className="text-gray-500 text-sm">Create your new account</p>
       </div>
 
       {/* Username / Phone */}
       <div>
-        <label className="block text-sm font-medium text-zinc-300 mb-1">Username / Phone</label>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Username / Phone</label>
         <input
           id="username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           placeholder="Enter your username or number"
-          className="w-full bg-zinc-800/60 text-white px-4 py-3 rounded-xl border border-zinc-700 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-[#bb3e03] transition-all duration-150 text-sm sm:text-base"
+          className="w-full bg-gray-100/60 text-black px-4 py-3 rounded-xl border border-gray-300 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#73a942] transition-all duration-150 text-sm sm:text-base"
         />
       </div>
 
       {/* Password */}
       <div>
-        <label className="block text-sm font-medium text-zinc-300 mb-1">Password</label>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
         <input
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           type="password"
           placeholder="Enter your password"
-          className="w-full bg-zinc-800/60 text-white px-4 py-3 rounded-xl border border-zinc-700 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-[#bb3e03] transition-all duration-150 text-sm sm:text-base"
+          className="w-full bg-gray-100/60 text-black px-4 py-3 rounded-xl border border-gray-300 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#73a942] transition-all duration-150 text-sm sm:text-base"
         />
       </div>
 
@@ -95,16 +101,16 @@ const login = ()=>{
       <button
         onClick={signUpFunc}
         type="submit"
-        className="w-full bg-[#bb3e03] text-white py-3 rounded-xl font-semibold hover:bg-[#e76f51] transition duration-200 shadow-md hover:shadow-lg text-sm sm:text-base"
+        className="w-full bg-[#55a630] text-white py-3 rounded-xl font-semibold hover:bg-[#2b9348] transition duration-200 shadow-md hover:shadow-lg text-sm sm:text-base"
       >
         Sign Up
       </button>
     </form>
 
     {/* Already have an account */}
-    <p className="text-center text-sm text-zinc-400 mt-6">
+    <p className="text-center text-sm text-gray-600 mt-6">
       Already have an account?
-      <a onClick={login} href="#" className="text-[#bb3e03] hover:underline ml-1">Log in</a>
+      <a onClick={login} href="#" className="text-[#55a630] hover:underline ml-1">Log in</a>
     </p>
   </div>
 </div>

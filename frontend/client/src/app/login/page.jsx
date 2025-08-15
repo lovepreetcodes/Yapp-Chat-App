@@ -47,67 +47,70 @@ if (res.data?.message === "Login Successful") {
 
 
   return (
-    
-<div className="min-h-screen flex items-center justify-center bg-black relative px-4 sm:px-6 py-6">
-  {/* Background gradient blobs */}
-  <div className="absolute w-60 h-60 sm:w-80 sm:h-80 bg-orange-700 opacity-20 blur-3xl rounded-full top-10 left-10"></div>
-  <div className="absolute w-72 h-72 sm:w-96 sm:h-96 bg-orange-500 opacity-10 blur-2xl rounded-full bottom-0 right-0"></div>
+ <div className="min-h-screen flex items-center justify-center bg-[#D9DBD5] relative px-4 sm:px-6 py-6">
+  {/* Background blur effect */}
+  <div className="absolute w-full h-full bg-cover bg-center" style={{ backgroundImage: 'url("/blurry_bg.png")', filter: 'blur(8px)' }}></div>
 
-  {/* Login Box (with logo inside) */}
-  <div className="bg-zinc-900/90 backdrop-blur-lg text-white w-full max-w-sm sm:max-w-md shadow-2xl p-6 sm:p-10 rounded-2xl border border-zinc-800 z-10 flex flex-col items-center">
+  {/* Login Box */}
+  <div className="bg-white/80 backdrop-blur-md text-black w-full max-w-sm sm:max-w-md shadow-2xl p-6 sm:p-10 rounded-2xl z-10 flex flex-col items-center">
     
-    {/* Logo (smaller, centered at top) */}
-    <div className="mb-6">
-      <img
-        src="/sign.png"
-        alt="Whispr Logo"
-        className="w-24 h-24 sm:w-28 sm:h-28 object-contain rounded-md"
-      />
-    </div>
+    {/* Title */}
+    <div className="flex items-center gap-3">
+          <img
+            src="/whatsapp-logo.png"
+            alt="Yapp logo"
+            className="w-10 h-10"
+          />
+          <h2 className="text-3xl font-bold tracking-wide">Yapp</h2>
+        </div>
 
     <form className="space-y-6 w-full">
       {/* Username */}
       <div>
-        <label className="block text-sm font-medium text-zinc-300 mb-2">Username / Phone</label>
+        <label className="block text-sm font-medium text-gray-700 mb-2">Username / Phone</label>
         <input
           onChange={(e) => setUsername(e.target.value)}
           type="text"
           placeholder="Enter your username or number"
-          className="w-full bg-zinc-800/60 text-white px-4 py-3 rounded-xl border border-zinc-700 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-[#bb3e03] transition-all duration-150 text-sm sm:text-base"
+          className="w-full bg-gray-100/60 text-black px-4 py-3 rounded-xl border border-gray-300 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#55a630] transition-all duration-150 text-sm sm:text-base"
         />
       </div>
 
       {/* Password */}
       <div className="relative">
+        <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
         <input
           onChange={(e) => setpassword(e.target.value)}
           type={showPassword ? "text" : "password"}
           placeholder="Enter your password"
-          className="w-full bg-zinc-800/60 text-white px-4 py-3 pr-12 rounded-xl border border-zinc-700 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-[#bb3e03] transition-all duration-150 text-sm sm:text-base"
+          className="w-full bg-gray-100/60 text-black px-4 py-3 pr-12 rounded-xl border border-gray-300 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#55a630] transition-all duration-150 text-sm sm:text-base"
         />
-        <button
+       <span>
+ <button
           type="button"
           onClick={() => setShowPassword(!showPassword)}
-          className="absolute inset-y-0 right-3 flex items-center text-xs sm:text-sm text-zinc-400 hover:text-white"
+          className="absolute inset-y-0 top-8 right-4 flex items-center text-sm text-gray-500 hover:text-gray-700"
         >
           {showPassword ? "Hide" : "Show"}
         </button>
+
+       </span>
       </div>
 
       {/* Login Button */}
       <button
         onClick={submit}
         type="submit"
-        className="w-full bg-[#bb3e03] text-white py-3 rounded-xl font-semibold hover:bg-[#e76f51] transition duration-200 shadow-md hover:shadow-lg text-sm sm:text-base"
+        className="w-full bg-[#55a630] text-white py-3 rounded-xl font-semibold hover:bg-[#2b9348] transition duration-200 shadow-md hover:shadow-lg text-sm sm:text-base"
       >
         Log In
       </button>
     </form>
 
     {/* Signup Link */}
-    <p className="text-center text-sm text-zinc-400 mt-6">
+    <p className="text-center text-sm text-gray-600 mt-6">
       Don’t have an account?
-      <a onClick={Register} href="#" className="text-[#bb3e03] hover:underline ml-1">Sign up</a>
+      <a onClick={Register} href="#" className="text-[#55a630] hover:underline ml-1">Sign up</a>
     </p>
   </div>
 </div>
