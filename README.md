@@ -13,7 +13,7 @@ Designed for scalability, speed, and a clean experience.
 Screenshots:
 
 ### 🔐 Login Page
-![Login](./screenshots/Screenshot_2.png)
+![Login](./screenshots/screenshot_2.png)
 
 ### 💬  Chat UI
 ![Chat](./screenshots/Screenshot_!.png)
