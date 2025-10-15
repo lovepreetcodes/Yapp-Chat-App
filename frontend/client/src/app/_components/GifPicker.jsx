@@ -29,7 +29,7 @@ const GifPicker = ({ onGifSelect }) => {
       <div className="overflow-y-auto max-h-[300px] ">
         <Grid
           width={430}
-          columns={2}
+          columns={4}
           gutter={6}
           fetchGifs={fetchGifs}
           // ✅ Prevent redirect on click
